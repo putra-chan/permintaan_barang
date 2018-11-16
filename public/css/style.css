@@ -1,0 +1,51 @@
+*{
+  margin: 0px auto;
+}
+html,body{
+  height: 100%;
+}
+#sidenav-overlay{
+  z-index: 0;
+}
+.mt50{
+  margin-top: 50px;
+}
+.table-wrapper{
+  margin: 40px 40px;
+}
+@media only screen and (min-width: 993px){
+  .container{
+    width: 90%;
+  }
+}
+.p10{
+  padding: 10px !important;
+}
+.p20{
+  padding: 20px !important;
+}
+
+.bg-color{
+  background-color: #009751;
+}
+.mt151{
+  background-color: #009751;
+}
+.left{
+  margin-left: -10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.right{
+  margin-left: -10px;
+  padding-left: 50px;
+  padding-right: 50px;
+}
+.footer{
+  line-height: 30px;
+  margin-bottom: 0;
+  width: 100%;
+}
+.content{
+  min-height: 600px;
+}
