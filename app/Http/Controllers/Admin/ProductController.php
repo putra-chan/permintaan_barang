@@ -24,11 +24,11 @@ class ProductController extends Controller
                           return "<img src='/data/images/".$product->image."' width='100px'/>";
                         })
                         ->addColumn('edit', function ($product){
-                          $html = '<button onclick="openModal(this);" data-togle="modal" data-val=\''.json_encode($product).'\' class="btn btn-primary btn-rounded btn-icon"><i class="material-icons">edit</i></button>';
+                          $html = '<a href= "#" onclick="openModal(this);" data-togle="modal" data-val=\''.json_encode($product).'\'><i class="material-icons">edit</i></a>';
                           return $html;
                         })
                         ->addColumn('delete', function($product){
-                          $html = "<button onclick='deleteItem(\"".$product->id."\",\"".$product->name."\")' class='btn btn-danger btn-rounded btn-icon'><i class='material-icons'>close</i></button>";
+                          $html = "<a href='#' onclick='deleteItem(\"".$product->id."\",\"".$product->name."\")'><i class='material-icons'>close</i></a>";
                           return $html;
                         })
                         ->rawColumns(['edit','delete', 'image'])

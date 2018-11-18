@@ -60,9 +60,25 @@ function cancel()
 $(document).ready(function(){
     $('.modal').modal();
   });
-function showInventory()
+function showInventory(pr_code)
 {
-  
+  $('#pr-popup').modal('open');
+  $('#popup-title').text(pr_code);
+
+  tablePR = $("#pr-status").dataTable({
+    processing: true,
+    serverSide: true,
+    ajax: 'pr/' + pr_code,
+    columns: [
+        {data: 'DT_Row_Index', name: 'DT_Row_Index'},
+        {data: 'name', name: 'name'},
+        {data: 'qty', name: 'qty'},
+        {data: 'qty_approved', name: 'qty_approved'},
+        {data: 'status', name: 'status', orderable: false, searchable: false},
+    ],
+    order: [[ 0, "asc" ]],
+  });
+
 }
 //Data Table PR
 $(document).ready(function(){
@@ -73,6 +89,8 @@ $(document).ready(function(){
     columns: [
         {data: 'DT_Row_Index', name: 'DT_Row_Index'},
         {data: 'pr_code', name: 'pr_code'},
+        {data: 'total', name: 'total'},
+        {data: 'date', name: 'date'},
         {data: 'show', name: 'show', orderable: false, searchable: false},
     ],
     order: [[ 0, "asc" ]],

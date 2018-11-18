@@ -46,18 +46,52 @@ class IndexController extends Controller
     public function pr(Request $request)
     {
       if ($request->ajax()) {
-        $purchasingrequest = PurchasingRequest::orderBy('id', 'desc')->get();
+        $purchasingrequest = PurchasingRequest::groupBy('pr_code')->orderBy('id', 'desc')->get();
         return DataTables::of($purchasingrequest)
                           ->addIndexColumn()
+                          ->addColumn('total', function($purchasingrequest){
+                            $total = PurchasingRequest::where('pr_code', $purchasingrequest->pr_code)->sum('quantity');
+                            return $total;
+                          })
+                          ->addColumn('date', function($purchasingrequest){
+                            return date('d F Y', strtotime($purchasingrequest->created_at));
+                          })
                           ->addColumn('show', function($purchasingrequest){
-                            $html ="<button onclick='showInventory(\"".$purchasingrequest->pr_code."\")' class='btn btn-danger btn-rounded btn-icon' data-togle='modal'><i class='material-icons'>remove_red_eye</i></button>";
+                            $html ="<a href='#' onclick='showInventory(\"".$purchasingrequest->pr_code."\")'  data-togle='modal'><i class='material-icons'>remove_red_eye</i></a>";
                             return $html;
                           })
-                          ->rawColumns(['show'])
+                          ->rawColumns(['total', 'date', 'show'])
                           ->make(true);
       }
       else {
         return view('pr.pr_home');
+      }
+    }
+
+    public function pr_detail(Request $request, $prcode)
+    {
+      if ($request->ajax()) {
+        $purchasingrequest = PurchasingRequest::where('pr_code', $prcode)->orderBy('id', 'desc')->get();
+
+        return DataTables::of($purchasingrequest)
+                          ->addIndexColumn()
+                          ->addColumn('name', function($purchasingrequest){
+                            $product = Product::takeOne($purchasingrequest->product_id);
+                            return $product->name;
+                          })
+                          ->editColumn('quantity_approve', function($purchasingrequest){
+                            if (isset($purchasingrequest->quantity_approve)) {
+                              return $purchasingrequest->quantity_approve
+                            }
+                            else {
+                              return 0;
+                            }
+                          })
+                          ->rawColumns(['total', 'date', 'show'])
+                          ->make(true);
+      }
+      else {
+        return abort(404);
       }
     }
 

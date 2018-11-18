@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use Gloudemans\Shoppingcart\Cart;
+use App\PurchasingRequest;
+use DB;
 
 class HomeController extends Controller
 {
