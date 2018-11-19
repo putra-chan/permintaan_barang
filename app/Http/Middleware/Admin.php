@@ -20,7 +20,7 @@ class Admin
         return $next($request);
       }
       else {
-        return abort(404);
+        return redirect('/approve');
       }
     }
 }
