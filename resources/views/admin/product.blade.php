@@ -70,7 +70,7 @@
         </div>
     </div>
 </div>
-@section('js')
-<script type="text/javascript" src="{{ asset('js/admin/product.js') }}"></script>
 @endsection
+@section('js')
+  <script type="text/javascript" src="{{ asset('js/admin/product.js') }}"></script>
 @endsection

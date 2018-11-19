@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use Gloudemans\Shoppingcart\Cart;
 use App\Product;
 use App\PurchasingRequest;
+use App\PurchasingOrder;
 use DB;
 
 class IndexController extends Controller
@@ -75,19 +76,33 @@ class IndexController extends Controller
 
         return DataTables::of($purchasingrequest)
                           ->addIndexColumn()
-                          ->addColumn('name', function($purchasingrequest){
+                          ->addColumn('product_name', function($purchasingrequest){
                             $product = Product::takeOne($purchasingrequest->product_id);
                             return $product->name;
                           })
                           ->editColumn('quantity_approve', function($purchasingrequest){
                             if (isset($purchasingrequest->quantity_approve)) {
-                              return $purchasingrequest->quantity_approve
+                              return $purchasingrequest->quantity_approve;
                             }
                             else {
                               return 0;
                             }
                           })
-                          ->rawColumns(['total', 'date', 'show'])
+                          ->addColumn('pr_status', function($purchasingrequest){
+                            $po = PurchasingOrder::where('pr_id', $purchasingrequest->id)->first();
+                            if (isset($po->process_by)) {
+                              if (isset($po->approved_id)) {
+                                return "Approved";
+                              }
+                              else {
+                                return "Waiting for approve";
+                              }
+                            }
+                            else {
+                              return "Waiting for process";
+                            }
+                          })
+                          ->rawColumns(['product_name', 'quantity_approve', 'pr_status'])
                           ->make(true);
       }
       else {

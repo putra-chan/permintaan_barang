@@ -20,6 +20,6 @@ class User
       if (Auth::user()->role == 0) {
         return $next($request);
       }
-        return redirect('/admin');
+        return abort(404);
     }
 }

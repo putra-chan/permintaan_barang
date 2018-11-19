@@ -29,6 +29,5 @@ Route::get('/admin', 'Admin\AdminController@index');
 Route::get('/product', 'Admin\ProductController@product');
 Route::post('/product', 'Admin\ProductController@store');
 Route::post('/product/delete', 'Admin\ProductController@destroy');
-// Route Processing_Order
-
-// Route Processing_request
+// Approve
+Route::get('/approve', 'Approved\ApprovedController@appDashboard');

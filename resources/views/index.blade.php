@@ -206,6 +206,34 @@
                         <li><a href="/product">Product</a></li>
                         <li><a href="#">Purchasing Request</a></li>
                         <li><a href="#">History Bulanan</a></li>
+                        @elseif (Auth::user()->role == 2)
+                        <li><a href="#">Approve</a></li>
+                        <li><a href="#">Data Bulanan</a></li>
+                        @guest
+                        <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li>
+                            @if (Route::has('register'))
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                            @endif
+                        </li>
+                        @else
+                        <li>
+                            <a href="#" role="button" data-activates="dropdown-atuh">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                       document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                        </li>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                        @endguest
+                    </ul>
                         @endif
                         @endguest
                     </ul>
@@ -214,16 +242,16 @@
         </div>
     </header>
     <main class="container content">
-      @yield('content')
+        @yield('content')
     </main>
     <div class="row mt151 footer">
-      <div class="container center">
-          <div class="copy-right">
-              <div class="wrapper-copyright">
-                  &copy;2018 Ahmad Syahputra
-              </div>
-          </div>
-      </div>
+        <div class="container center">
+            <div class="copy-right">
+                <div class="wrapper-copyright">
+                    &copy;2018 Ahmad Syahputra
+                </div>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>
@@ -235,5 +263,4 @@
     <script type="text/javascript" src="{{ asset('js/main.js')}}"></script>
     @yield('js')
 </body>
-
 </html>

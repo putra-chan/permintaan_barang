@@ -61,7 +61,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'admin' => \App\Http\Middleware\Admin::class,
-        'purchasing' => \App\Http\Middleware\purchasing::class,
         'approval' => \App\Http\Middleware\ketua::class,
         'user' => \App\Http\Middleware\User::class,
     ];

@@ -1,3 +1,5 @@
+var tablePR;
+
 function save(){
   $.ajax({
     url: '/store',
@@ -65,18 +67,19 @@ function showInventory(pr_code)
   $('#pr-popup').modal('open');
   $('#popup-title').text(pr_code);
 
-  tablePR = $("#pr-status").dataTable({
+  $("#table1").dataTable().fnDestroy();
+
+  tablePR = $("#table1").dataTable({
     processing: true,
     serverSide: true,
     ajax: 'pr/' + pr_code,
     columns: [
-        {data: 'DT_Row_Index', name: 'DT_Row_Index'},
-        {data: 'name', name: 'name'},
-        {data: 'qty', name: 'qty'},
-        {data: 'qty_approved', name: 'qty_approved'},
-        {data: 'status', name: 'status', orderable: false, searchable: false},
-    ],
-    order: [[ 0, "asc" ]],
+      {data: 'DT_Row_Index', name: 'DT_Row_Index'},
+      {data: 'product_name', name: 'product_name'},
+      {data: 'quantity', name: 'quantity'},
+      {data: 'quantity_approve', name: 'quantity_approve'},
+      {data: 'pr_status', name: 'pr_status', orderable: false, searchable: false},
+    ]
   });
 
 }

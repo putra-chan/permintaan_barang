@@ -29,22 +29,21 @@
       <div class="modal-header">
         <h3 id="popup-title"></h3>
       </div>
-      <table id="pr-status">
+      <table id="table1" class="responsive-table">
         <thead>
           <tr>
-            <td>Inventory Name</td>
-            <td>Quantity</td>
-            <td>Qty Approved</td>
-            <td>Status</td>
+            <th>No</th>
+            <th>Inventory Name</th>
+            <th>Quantity</th>
+            <th>Qty Approved</th>
+            <th>Status</th>
           </tr>
         </thead>
       </table>
     </div>
   </div>
+@endsection
 
-
-
-  @section('js')
-    <script type="text/javascript" src="{{ asset('js/PR/pr-main.js') }}"></script>
-  @endsection
+@section('js')
+  <script type="text/javascript" src="{{ asset('js/PR/pr-main.js') }}"></script>
 @endsection
