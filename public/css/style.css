@@ -47,5 +47,6 @@ html,body{
   width: 100%;
 }
 .content{
-  min-height: 600px;
+  min-height: 553px;
+  position: relative;
 }

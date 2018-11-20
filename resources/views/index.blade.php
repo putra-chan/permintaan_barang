@@ -209,7 +209,7 @@
                         <li><a href="#">Purchasing Request</a></li>
                         <li><a href="#">History Bulanan</a></li>
                         @elseif (Auth::user()->role == 2)
-                        <li><a href="#">Approve</a></li>
+                        <li><a href="/approve">Approve</a></li>
                         <li><a href="#">Data Bulanan</a></li>
                         @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
@@ -234,8 +234,38 @@
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
+
                         @endguest
                     </ul>
+                    <ul class="side-nav" id="mobile-navbar">
+                        @guest
+                        <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
+                        <li>
+                            @if (Route::has('register'))
+                            <a href="{{ route('register') }}">{{ __('Register') }}</a>
+                            @endif
+                        </li>
+                        @else
+                        <li>
+                            <a href="#" data-activates="dropdown-approve" class="dropdown-button">
+                                {{ Auth::user()->name }} <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-content" id="dropdown-approve">
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                </li>
+
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                            </ul>
+                        </li>
+                        @endguest
+                        <li><a href="/approve">Approve</a></li>
+                        <li><a href="#">Data Bulanan</a></li>
                         @endif
                         @endguest
                     </ul>

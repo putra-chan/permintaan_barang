@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Purchasing_Request;
 
-use Yajra\DataTables\DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
+use Yajra\DataTables\DataTables;
 use Gloudemans\Shoppingcart\Cart;
 use App\Product;
 use App\PurchasingRequest;
