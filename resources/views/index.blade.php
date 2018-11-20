@@ -28,6 +28,8 @@
                     <a href="/home" class="brand-logo" style="padding-left:20px">Pengadilan Negeri Medan</a>
                     @elseif (Auth::user()->role == 1)
                     <a href="/admin" class="brand-logo" style="padding-left:20px">Pengadilan Negeri Medan</a>
+                    @elseif (Auth::user()->role == 2)
+                    <a href="/approve" class="brand-logo" style="padding-left:20px">Pengadilan Negeri Medan</a>
                     @endif
                     @endguest
                     <a href="#" data-activates="mobile-navbar" class="button-collapse"><i class="material-icons">menu</i></a>

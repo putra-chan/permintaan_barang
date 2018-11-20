@@ -23,16 +23,16 @@
         </div>
     </header>
     <div class="content">
-      @yield('content')
+        @yield('content')
     </div>
     <div class="wrapper bg-color footer">
-      <div class="container center">
-          <div class="copy-right">
-              <div class="wrapper-copyright text">
-                  &copy;2018 Ahmad Syahputra
-              </div>
-          </div>
-      </div>
+        <div class="container center">
+            <div class="copy-right">
+                <div class="wrapper-copyright text">
+                    &copy;2018 Ahmad Syahputra
+                </div>
+            </div>
+        </div>
     </div>
     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/materialize.min.js') }}"></script>

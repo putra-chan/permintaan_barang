@@ -18,18 +18,18 @@
             $i = 1;
             @endphp
             @foreach ($products as $product)
-              <div class="col s6 m4 l3 p10 product-item" onclick="add( {{ $product->id }} )" id="product-item-{{ $product->id }}">
+            <div class="col s6 m4 l3 p10 product-item" onclick="add( {{ $product->id }} )" id="product-item-{{ $product->id }}">
                 <div class="card">
-                  <div class="card-image">
-                    <div class="wrapper-image">
-                        <img src="{{ asset('/data/images/'.$product->image) }}" alt="product" width="100px" height="100px">
+                    <div class="card-image">
+                        <div class="wrapper-image">
+                            <img src="{{ asset('/data/images/'.$product->image) }}" alt="product" width="100px" height="100px">
+                        </div>
+                        <div class="wrapper- product" data-val="{{ $product }}">
+                            <p>{{ $product->name }}</p>
+                        </div>
                     </div>
-                    <div class="wrapper- product" data-val="{{ $product }}">
-                      <p>{{ $product->name }}</p>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
             @php
             $i++;
             @endphp
@@ -44,10 +44,10 @@
                 </div>
             </div>
             <div class="row">
-              <div class="col s12 m12 l12 wrapper-button">
-                <button type="button" name="button" class="waves-effect waves-dark btn modal-trigger red left" onclick="cancel(this)">Batal</button>
-                <button type="button" name="button" class="waves-effect waves-light btn modal-trigger right" onclick="save(this)">Save</button>
-              </div>
+                <div class="col s12 m12 l12 wrapper-button">
+                    <button type="button" name="button" class="waves-effect waves-dark btn modal-trigger red left" onclick="cancel(this)">Batal</button>
+                    <button type="button" name="button" class="waves-effect waves-light btn modal-trigger right" onclick="save(this)">Save</button>
+                </div>
             </div>
         </div>
         <div class="page-navigate center">
@@ -58,6 +58,6 @@
     </div>
 </div>
 @section('js')
-  <script type="text/javascript" src="{{ asset('js/PR/pr-main.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/PR/pr-main.js') }}"></script>
 @endsection
 @endsection
