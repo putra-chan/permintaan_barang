@@ -75,13 +75,13 @@ function showInventory(pr_code)
     serverSide: true,
     ajax: 'pr/' + pr_code,
     columns: [
-      {data: 'DT_Row_Index', name: 'DT_Row_Index'},
+      {data: 'DT_RowIndex', name: 'DT_RowIndex'},
       {data: 'product_name', name: 'product_name'},
       {data: 'quantity', name: 'quantity'},
       {data: 'quantity_approve', name: 'quantity_approve'},
       {data: 'pr_status', name: 'pr_status', orderable: false, searchable: false},
     ],
-    order: [[1, "asc"]],
+    order: [[0, "asc"]],
   });
 }
 //Data Table PR
@@ -91,12 +91,12 @@ $(document).ready(function(){
     serverSide: true,
     ajax: 'pr',
     columns: [
-      {data: 'DT_Row_Index', name: 'DT_Row_Index'},
+      {data: 'DT_RowIndex', name: 'DT_RowIndex'},
       {data: 'pr_code', name: 'pr_code'},
       {data: 'total', name: 'total'},
       {data: 'date', name: 'date'},
       {data: 'show', name: 'show', orderable: false, searchable: false},
     ],
-    order: [[ 1, "asc" ]],
+    order: [[ 0, "asc" ]],
   });
 });

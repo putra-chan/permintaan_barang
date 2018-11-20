@@ -247,25 +247,21 @@
                         </li>
                         @else
                         <li>
-                            <a href="#" data-activates="dropdown-approve" class="dropdown-button">
+                            <a href="#">
                                 {{ Auth::user()->name }} <span class="caret"></span>
                             </a>
-                            <ul class="dropdown-content" id="dropdown-approve">
-                                <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                             document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-                                </li>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </ul>
                         </li>
                         @endguest
                         <li><a href="/approve">Approve</a></li>
                         <li><a href="#">Data Bulanan</a></li>
+                        <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                         @endif
                         @endguest
                     </ul>

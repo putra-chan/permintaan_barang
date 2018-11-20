@@ -130,7 +130,7 @@ $(document).ready(function(){
     serverSide: true,
     ajax: 'product',
     columns: [
-        {data: 'DT_Row_Index', name: 'DT_Row_Index'},
+        {data: 'DT_RowIndex', name: 'DT_RowIndex'},
         {data: 'image', name: 'image'},
         {data: 'name', name: 'name'},
         {data: 'edit', name: 'edit', orderable: false, searchable: false},
