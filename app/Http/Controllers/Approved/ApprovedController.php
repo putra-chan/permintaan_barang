@@ -76,7 +76,7 @@ class ApprovedController extends Controller
   }
 
 
-  public function approve()
+  public function success(Request $request)
   {
     
   }

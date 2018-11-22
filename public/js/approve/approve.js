@@ -1,5 +1,5 @@
 var table;
-
+// data table approve
 $(document).ready(function() {
   table = $('#table-approve').dataTable({
     processing: true,
@@ -16,7 +16,7 @@ $(document).ready(function() {
     order: [[0, "asc"]],
   });
 });
-
+//menampilkan modal approve
 function showApprove(pr_code)
 {
   $.ajax({
@@ -30,6 +30,33 @@ function showApprove(pr_code)
       if (data.status) {
         $("#approve-modal").modal('open');
         $("#isiApprove").html(data.data);
+      }
+      else {
+        var span = document.createElement("span");
+        span.innerHTML = data.description;
+        swal({
+          title: "Oops!",
+          content: span,
+          icon: 'error'
+        });
+      }
+    }
+  }, 'json');
+}
+
+//button setuju dalam modal approve
+function approve(pr_id){
+  $.ajax({
+    url: '/success',
+    type: 'POST',
+    data:
+    {
+      '_token':$('meta[name="csrf-token"]').attr('content'),
+      'pr_id': pr_id,
+    },
+    success: function(data){
+      if (data.status) {
+        swal('Success', data.description, 'success');
       }
       else {
         var span = document.createElement("span");

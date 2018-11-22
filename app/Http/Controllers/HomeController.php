@@ -42,7 +42,6 @@ class HomeController extends Controller
           'qty' => 1,
           'price' => 0
         ]);
-
         return response()
                 ->json(['status' => true, 'description' => 'success']);
     }
