@@ -50,6 +50,28 @@ function approve(pr_id){
   }, 'json');
 }
 
+//button tolak dalam modal approve
+function reject(pr_id){
+  $.ajax({
+    url: '/reject',
+    type: 'POST',
+    data:
+    {
+      '_token':$('meta[name="csrf-token"]').attr('content'),
+      'pr_id': pr_id,
+      'qty': $("#pr-"+pr_id).val(),
+    },
+    success: function(data){
+      if (data.status) {
+        swal('Success', data.description, 'success');
+        $("#tr-pr-"+pr_id).hide();
+      }
+      else {
+        swal('Oops!', data.description, 'error');
+      }
+    }
+  }, 'json');
+}
 
 // data table approve
 $(document).ready(function() {

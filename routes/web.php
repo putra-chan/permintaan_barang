@@ -35,3 +35,4 @@ Route::post('/product/delete', 'Admin\ProductController@destroy');
 Route::get('/approve', 'Approved\ApprovedController@tableApp');
 Route::post('/approve', 'Approved\ApprovedController@fetchPR');
 Route::post('/success', 'Approved\ApprovedController@success');
+Route::post('/reject', 'Approved\ApprovedController@success');

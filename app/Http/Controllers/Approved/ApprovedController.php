@@ -97,4 +97,19 @@ class ApprovedController extends Controller
 
   }
 
+  public function reject(Request $request){
+    $pr = PurchasingRequest::where('id', $request->pr_id)->first();
+    if ($request->qty > $pr->quantity) {
+      return response()
+                    ->json(['status' => false, 'description' => 'Aprrove Quantity Melebihi']);
+    }
+    else {
+      $pr->quantity_approve = 0;
+      $pr->save();
+
+      return response()
+      ->json(['status' => true, 'description' => 'success']);
+    }
+  }
+
 }
