@@ -58,6 +58,7 @@
     </div>
 </div>
 @section('js')
+<script type="text/javascript" src="{{ asset('js/admin/product.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/PR/pr-main.js') }}"></script>
 @endsection
 @endsection

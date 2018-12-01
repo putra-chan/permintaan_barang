@@ -24,6 +24,8 @@ Route::post('/store', 'Purchasing_Request\IndexController@store');
 Route::get('/pr', 'Purchasing_Request\IndexController@pr');
 Route::get('/pr/{prcode}', 'Purchasing_Request\IndexController@pr_detail');
 Route::post('/pr', 'Purchasing_Request\IndexController@cancel');
+Route::post('/add-qty', 'HomeController@addQty');
+Route::post('/subtract-qty', 'HomeController@subtractQty');
 // Route Admin
 Route::get('/admin', 'Admin\AdminController@index');
 Route::get('/product', 'Admin\ProductController@product');

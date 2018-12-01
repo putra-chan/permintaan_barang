@@ -33,8 +33,7 @@ class IndexController extends Controller
           $pr->quantity = $crt->qty;
           $pr->save();
         }
-
-
+        $cart->destroy();
         return response()
                       ->json(['status' => true, 'description' => 'Success']);
 

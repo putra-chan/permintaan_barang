@@ -41,11 +41,15 @@ class ApprovedController extends Controller
                             return "Waiting for process";
                           }
                         })
+                        ->addColumn('total', function($approved){
+                          $total = PurchasingRequest::where('pr_code', $approved->pr_code)->sum('quantity');
+                          return $total;
+                        })
                         ->editColumn('show', function($approved){
                           $html ="<a href='#approve-modal' onclick='showApprove(\"".$approved->pr_code."\")'  data-togle='modal'><i class='material-icons'>remove_red_eye</i></a>";
                           return $html;
                         })
-                        ->rawColumns(['name', 'status', 'show'])
+                        ->rawColumns(['name', 'status','total', 'show'])
                         ->make(true);
     }
     else {
@@ -61,7 +65,7 @@ class ApprovedController extends Controller
     $i = 1;
     foreach ($dataPR as $data) {
       $product = Product::where('id', $data->product_id)->first();
-      $html .= "<tr>";
+      $html .= "<tr id='tr-pr-".$data->id."'>";
       $html .= "<td>".$i."</td>";
       $html .= "<td>".$product->name."</td>";
       $html .= "<td>".$data->quantity."</td>";
@@ -78,7 +82,19 @@ class ApprovedController extends Controller
 
   public function success(Request $request)
   {
-    
+    $pr = PurchasingRequest::where('id', $request->pr_id)->first();
+    if ($request->qty > $pr->quantity) {
+      return response()
+                    ->json(['status' => false, 'description' => 'Aprrove Quantity Melebihi']);
+    }
+    else {
+      $pr->quantity_approve = $request->qty;
+      $pr->save();
+
+      return response()
+      ->json(['status' => true, 'description' => 'success']);
+    }
+
   }
 
 }
