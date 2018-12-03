@@ -151,7 +151,7 @@
                         <li><a href="/admin">Dashboard</a></li>
                         <li><a href="/product">Product</a></li>
                         <li><a href="#">Purchasing Request</a></li>
-                        <li><a href="#">History Bulanan</a></li>
+                        <li><a href="#">Purchasing Order</a></li>
                         @guest
                         <li><a href="{{ route('login') }}">{{ __('Login') }}</a></li>
                         <li>
@@ -207,7 +207,7 @@
                         <li><a href="/admin">Dashboard</a></li>
                         <li><a href="/product">Product</a></li>
                         <li><a href="#">Purchasing Request</a></li>
-                        <li><a href="#">History Bulanan</a></li>
+                        <li><a href="#">Purchasing Order</a></li>
                         @elseif (Auth::user()->role == 2)
                         <li><a href="/approve">Approve</a></li>
                         <li><a href="#">Data Bulanan</a></li>

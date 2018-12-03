@@ -38,7 +38,12 @@ class ApprovedController extends Controller
                             }
                           }
                           else {
-                            return "Waiting for process";
+                            if (isset($approved->quantity_approve)) {
+                              return "Processed, waiting for PO";
+                            }
+                            else {
+                              return "Waiting for process";
+                            }
                           }
                         })
                         ->addColumn('total', function($approved){
@@ -82,14 +87,21 @@ class ApprovedController extends Controller
 
   public function success(Request $request)
   {
+
     $pr = PurchasingRequest::where('id', $request->pr_id)->first();
     if ($request->qty > $pr->quantity) {
       return response()
                     ->json(['status' => false, 'description' => 'Aprrove Quantity Melebihi']);
     }
     else {
-      $pr->quantity_approve = $request->qty;
-      $pr->save();
+      if ($request->quantity == NULL) {
+        $pr->quantity_approve = $pr->quantity;
+        $pr->save();
+      }
+      else {
+        $pr->quantity_approve = $request->qty;
+        $pr->save();
+      }
 
       return response()
       ->json(['status' => true, 'description' => 'success']);

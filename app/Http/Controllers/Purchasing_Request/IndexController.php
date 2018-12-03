@@ -88,17 +88,14 @@ class IndexController extends Controller
                             }
                           })
                           ->addColumn('pr_status', function($purchasingrequest){
-                            $po = PurchasingOrder::where('pr_id', $purchasingrequest->id)->first();
-                            if (isset($po->process_by)) {
-                              if (isset($po->approved_id)) {
-                                return "Approved";
-                              }
-                              else {
-                                return "Waiting for approve";
-                              }
+                            if ($purchasingrequest->quantity_approve == 0 ) {
+                              return "Rejected";
+                            }
+                            else if ($purchasingrequest->quantity_approve >= 1) {
+                              return "Approved";
                             }
                             else {
-                              return "Waiting for process";
+                              return "Waiting for proccess";
                             }
                           })
                           ->rawColumns(['product_name', 'quantity_approve', 'pr_status'])
