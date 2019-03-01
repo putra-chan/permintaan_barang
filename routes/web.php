@@ -36,3 +36,5 @@ Route::get('/approve', 'Approved\ApprovedController@tableApp');
 Route::post('/approve', 'Approved\ApprovedController@fetchPR');
 Route::post('/success', 'Approved\ApprovedController@success');
 Route::post('/reject', 'Approved\ApprovedController@success');
+//PurchasingOrder
+Route::get('/purchasingOrder', 'Admin\PurchasingOrderController@purchasingOrder');
